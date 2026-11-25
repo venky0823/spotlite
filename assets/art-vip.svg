@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad-vip" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DB954" />
+      <stop offset="35%" stop-color="#104928" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#121212" />
+    </linearGradient>
+    <linearGradient id="gold-foil" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="50%" stop-color="#FFF8DC" />
+      <stop offset="100%" stop-color="#DAA520" />
+    </linearGradient>
+    <filter id="vip-glow">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="200" height="200" rx="28" fill="url(#bg-grad-vip)" stroke="#D4AF37" stroke-width="2" />
+  
+  <!-- Outer Gold Disc -->
+  <circle cx="100" cy="100" r="76" fill="#141414" stroke="url(#gold-foil)" stroke-width="2.5" />
+  <circle cx="100" cy="100" r="66" fill="none" stroke="#D4AF37" stroke-width="1" stroke-dasharray="6 4" opacity="0.6" />
+  <circle cx="100" cy="100" r="54" fill="none" stroke="#1DB954" stroke-width="2" stroke-dasharray="14 7" opacity="0.8" />
+
+  <!-- Center Holographic Crown/Diamond -->
+  <polygon points="100,66 122,86 114,118 86,118 78,86" fill="url(#gold-foil)" filter="url(#vip-glow)" opacity="0.9" />
+  <text x="100" y="104" text-anchor="middle" fill="#000000" font-family="'Inter', Arial, sans-serif" font-weight="900" font-size="14" letter-spacing="1">VIP</text>
+
+  <!-- Bottom-Right 4-Dot Equalizer Indicator -->
+  <rect x="138" y="146" width="46" height="26" rx="8" fill="#121212" opacity="0.85" stroke="#D4AF37" stroke-width="1.5" />
+  <circle cx="148" cy="159" r="2.5" fill="#FFD700" />
+  <circle cx="156" cy="159" r="2.5" fill="#1DB954" />
+  <circle cx="164" cy="159" r="2.5" fill="#FFD700" />
+  <circle cx="172" cy="159" r="2.5" fill="#1DB954" />
+</svg>

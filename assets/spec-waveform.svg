@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" width="100%" height="100%">
+  <rect width="480" height="240" fill="#121212"/>
+  <rect x="20" y="20" width="440" height="200" rx="8" fill="#181818" stroke="#282828" stroke-width="2"/>
+  <text x="40" y="50" fill="#FFFFFF" font-family="'Inter', Arial" font-size="12" font-weight="700">FREQUENCY SPECTRUM &amp; VISUALIZER SPECIFICATION</text>
+  <text x="40" y="70" fill="#6A6A6A" font-family="'Inter', Arial" font-size="10">Real-time Fast Fourier Transform (FFT) Bin Distribution (32 Bands)</text>
+  
+  <!-- Waveform bars -->
+  <g fill="#1DB954" opacity="0.9">
+    <rect x="50" y="150" width="8" height="40" rx="2"/>
+    <rect x="65" y="130" width="8" height="60" rx="2"/>
+    <rect x="80" y="110" width="8" height="80" rx="2"/>
+    <rect x="95" y="140" width="8" height="50" rx="2"/>
+    <rect x="110" y="90" width="8" height="100" rx="2"/>
+    <rect x="125" y="120" width="8" height="70" rx="2"/>
+    <rect x="140" y="80" width="8" height="110" rx="2"/>
+    <rect x="155" y="105" width="8" height="85" rx="2"/>
+    <rect x="170" y="135" width="8" height="55" rx="2"/>
+    <rect x="185" y="100" width="8" height="90" rx="2"/>
+    <rect x="200" y="70" width="8" height="120" rx="2"/>
+    <rect x="215" y="95" width="8" height="95" rx="2"/>
+    <rect x="230" y="115" width="8" height="75" rx="2"/>
+    <rect x="245" y="85" width="8" height="105" rx="2"/>
+    <rect x="260" y="130" width="8" height="60" rx="2"/>
+    <rect x="275" y="100" width="8" height="90" rx="2"/>
+    <rect x="290" y="140" width="8" height="50" rx="2"/>
+    <rect x="305" y="120" width="8" height="70" rx="2"/>
+    <rect x="320" y="150" width="8" height="40" rx="2"/>
+    <rect x="335" y="160" width="8" height="30" rx="2"/>
+    <rect x="350" y="145" width="8" height="45" rx="2"/>
+    <rect x="365" y="165" width="8" height="25" rx="2"/>
+    <rect x="380" y="155" width="8" height="35" rx="2"/>
+    <rect x="395" y="170" width="8" height="20" rx="2"/>
+    <rect x="410" y="175" width="8" height="15" rx="2"/>
+    <rect x="425" y="180" width="8" height="10" rx="2"/>
+  </g>
+  <line x1="40" y1="190" x2="440" y2="190" stroke="#282828" stroke-width="1"/>
+</svg>

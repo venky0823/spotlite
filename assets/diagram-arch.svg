@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" width="100%" height="100%">
+  <rect width="480" height="240" fill="#121212"/>
+  <rect x="20" y="30" width="120" height="180" rx="8" fill="#181818" stroke="#282828" stroke-width="2"/>
+  <text x="80" y="60" fill="#FFFFFF" font-family="'Inter', Arial" font-size="12" font-weight="700" text-anchor="middle">UI LAYER</text>
+  <text x="80" y="85" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Mini Player Box</text>
+  <text x="80" y="105" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Progress Scrubber</text>
+  <text x="80" y="125" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Action Buttons</text>
+  <text x="80" y="145" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">ARIA Live Announcer</text>
+
+  <line x1="140" y1="120" x2="180" y2="120" stroke="#1DB954" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="180,120 174,116 174,124" fill="#1DB954"/>
+
+  <rect x="180" y="30" width="120" height="180" rx="8" fill="#181818" stroke="#1DB954" stroke-width="2"/>
+  <text x="240" y="60" fill="#1DB954" font-family="'Inter', Arial" font-size="12" font-weight="700" text-anchor="middle">CORE ENGINE</text>
+  <text x="240" y="85" fill="#FFFFFF" font-family="'Inter', Arial" font-size="9" text-anchor="middle">AudioContext State</text>
+  <text x="240" y="105" fill="#FFFFFF" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Track Queue Logic</text>
+  <text x="240" y="125" fill="#FFFFFF" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Clock &amp; Scrubbing</text>
+  <text x="240" y="145" fill="#FFFFFF" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Observer Dispatch</text>
+
+  <line x1="300" y1="120" x2="340" y2="120" stroke="#1DB954" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="340,120 334,116 334,124" fill="#1DB954"/>
+
+  <rect x="340" y="30" width="120" height="180" rx="8" fill="#181818" stroke="#282828" stroke-width="2"/>
+  <text x="400" y="60" fill="#FFFFFF" font-family="'Inter', Arial" font-size="12" font-weight="700" text-anchor="middle">AUDIO API</text>
+  <text x="400" y="85" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Oscillator Nodes</text>
+  <text x="400" y="105" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Gain Envelope</text>
+  <text x="400" y="125" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Master Destination</text>
+  <text x="400" y="145" fill="#B3B3B3" font-family="'Inter', Arial" font-size="9" text-anchor="middle">Visualizer Stream</text>
+</svg>

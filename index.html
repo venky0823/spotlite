@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPOTLITE • Playlist Switcher &amp; Canvas Visualizer</title>
+  <meta name="description" content="Spotify-themed music player with Dynamic Canvas Audio Visualizer, Like Counter, VIP Song Lock Gate, and Smart Mute Memory.">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%231DB954'/><path d='M25 40c18-5 35-4 50 4M28 52c15-4 30-3 44 4M32 64c12-3 24-2 36 3' fill='none' stroke='%23000' stroke-width='6' stroke-linecap='round'/></svg>">
+</head>
+<body>
+
+  <!-- Screen reader announcer -->
+  <div id="aria-live-announcer" class="sr-only" aria-live="polite" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"></div>
+
+  <!-- Human Verification Screen (Competition Arena Shield Gate) -->
+  <aside id="verification-overlay" class="verification-overlay" role="dialog" aria-modal="true" aria-labelledby="verification-heading">
+    <div class="verification-backdrop-ambient"></div>
+    <div class="verification-card">
+      
+      <!-- Shield Icon Container with Glowing Rings -->
+      <div class="shield-icon-wrapper">
+        <div class="shield-pulse-ring"></div>
+        <svg class="shield-svg" viewBox="0 0 48 48" aria-hidden="true">
+          <!-- Outer Shield with Green Glow -->
+          <path d="M24 4L8 10V22C8 32.5 14.8 42.2 24 44C33.2 42.2 40 32.5 40 22V10L24 4Z" 
+                fill="rgba(29, 185, 84, 0.12)" 
+                stroke="#1DB954" 
+                stroke-width="2.5" 
+                stroke-linejoin="round"/>
+          <!-- Inner Verified Checkmark -->
+          <path d="M16 23L21.5 28.5L32 18" 
+                fill="none" 
+                stroke="#1DB954" 
+                stroke-width="3" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Small text above heading -->
+      <span class="verification-subtitle">COMPETITION ARENA SHIELD</span>
+
+      <!-- Heading -->
+      <h1 id="verification-heading" class="verification-title">Human Verification</h1>
+
+      <!-- Informational Description -->
+      <p class="verification-desc">
+        Please confirm your presence to initialize the Spotlite audio engine and enter the competition arena.
+      </p>
+
+      <!-- Protocol Status Badge -->
+      <div class="verification-status-pill">
+        <span class="status-dot-pulse"></span>
+        <span>PROTOCOL 1.0 • BOT FILTER ACTIVE</span>
+      </div>
+
+      <!-- Big Green Button -->
+      <button type="button" id="btn-verify-human" class="btn-verify-human">
+        <span id="verify-btn-text">I AM A HUMAN COMPETITOR</span>
+      </button>
+
+      <!-- Security / Trust Footer -->
+      <div class="verification-footer-note">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>SECURED SPOTLITE CHALLENGE ENVIRONMENT</span>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- App Wrapper Centered -->
+  <main class="spotlite-app-root">
+
+    <!-- Top Header Bar (Exact match to screenshot) -->
+    <header class="top-header-bar" role="banner">
+      <div class="brand-group">
+        <!-- Spotify Icon -->
+        <svg class="spotify-logo-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" fill="#1DB954" />
+          <path d="M6 9.8c4.5-1.3 9-.9 12.8 1.1" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M6.8 12.8c3.8-1 7.6-.7 10.8.9" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" />
+          <path d="M7.6 15.6c3-.8 6-.6 8.8.7" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <span class="brand-title">SPOTLITE</span>
+        <span class="badge-pill-finale">1ST YEAR FINALE</span>
+      </div>
+
+      <div class="header-action-group">
+        <button type="button" id="btn-header-specs" class="btn-header-specs" aria-label="View Required Specs &amp; Verification Status">
+          <span>📜</span> REQUIRED SPECS
+        </button>
+        <button type="button" id="btn-header-reset" class="btn-header-reset" aria-label="Reset player to default state">
+          RESET
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Player Card Container -->
+    <section class="player-main-card" aria-label="Music Player Interface">
+
+      <!-- Now Playing Header -->
+      <div class="now-playing-header">
+        <span class="label-now-playing">NOW PLAYING</span>
+        <div id="badge-liked-songs" class="badge-liked-songs" role="status" aria-live="polite">
+          <span class="heart-icon-badge">♥</span>
+          <span id="liked-count-text">Liked Songs: 0</span>
+        </div>
+      </div>
+
+      <!-- Hero Track Display: Artwork + Metadata -->
+      <div class="hero-track-row">
+        <div id="artwork-wrapper" class="artwork-wrapper">
+          <img 
+            id="artwork-img" 
+            class="artwork-img" 
+            src="assets/art-midnight.svg" 
+            alt="Midnight Telemetry Artwork"
+            width="104"
+            height="104"
+          >
+        </div>
+
+        <div class="hero-meta-col">
+          <h2 id="track-hero-title" class="track-hero-title">Midnight Telemetry</h2>
+          <p id="track-hero-artist" class="track-hero-artist">Apex Synth</p>
+          <span id="track-hero-genre" class="genre-pill-tag">SYNTHWAVE</span>
+        </div>
+      </div>
+
+      <!-- Canvas Audio Visualizer -->
+      <div class="visualizer-display-box" aria-label="Live Dynamic Audio Visualizer">
+        <canvas id="visualizer-canvas" class="visualizer-canvas" width="460" height="52"></canvas>
+      </div>
+
+      <!-- Progress Section: Timestamps & Scrubber -->
+      <div class="progress-section">
+        <span id="time-current" class="time-stamp">0:00</span>
+        <div 
+          id="progress-bar-interactive" 
+          class="progress-bar-interactive" 
+          role="slider" 
+          tabindex="0"
+          aria-label="Seek position in track" 
+          aria-valuemin="0" 
+          aria-valuemax="150" 
+          aria-valuenow="0"
+        >
+          <div id="progress-fill" class="progress-fill"></div>
+          <div id="progress-thumb-handle" class="progress-thumb-handle"></div>
+        </div>
+        <span id="time-duration" class="time-stamp right-align">2:30</span>
+      </div>
+
+      <!-- Playback Controls (Prev, Play/Pause Hero, Next) -->
+      <div class="controls-row">
+        <button type="button" id="btn-prev" class="btn-ctrl-nav" aria-label="Previous Track">
+          ⏮
+        </button>
+        <button type="button" id="btn-play-hero" class="btn-play-hero-circle" aria-label="Play Track">
+          <span id="icon-play-hero" class="icon-play-hero is-paused">▶</span>
+        </button>
+        <button type="button" id="btn-next" class="btn-ctrl-nav" aria-label="Next Track">
+          ⏭
+        </button>
+      </div>
+
+      <!-- Volume & Smart Mute Memory Row -->
+      <div class="volume-control-row">
+        <button type="button" id="btn-speaker-mute" class="btn-speaker-mute" aria-label="Mute audio">
+          🔊
+        </button>
+        <div 
+          id="volume-slider-track" 
+          class="volume-slider-track" 
+          role="slider" 
+          tabindex="0" 
+          aria-label="Volume level" 
+          aria-valuemin="0" 
+          aria-valuemax="100" 
+          aria-valuenow="70"
+        >
+          <div id="volume-slider-fill" class="volume-slider-fill" style="width: 70%;"></div>
+        </div>
+        <span id="volume-percent-label" class="volume-percent-label">70%</span>
+      </div>
+
+      <!-- Playlist Section Header (4 Tracks • 1 VIP) -->
+      <div class="playlist-section">
+        <div class="playlist-header-row">
+          <span id="label-playlist-count" class="label-playlist-count">PLAYLIST 4 TRACKS • 1 VIP</span>
+          <button type="button" id="btn-customize-songs" class="btn-customize-songs" aria-label="Customize songs in playlist">
+            <span>✏️</span> CUSTOMIZE SONGS
+          </button>
+        </div>
+
+        <!-- Track List (Injected and controlled dynamically) -->
+        <div id="tracks-container" class="tracks-container" role="list"></div>
+      </div>
+
+    </section>
+
+    <!-- Footer Keyboard Shortcuts Hint -->
+    <footer class="keyboard-hints-footer">
+      <span><span class="kbd-tag">Space</span> Play/Pause</span>
+      <span><span class="kbd-tag">M</span> Mute</span>
+      <span><span class="kbd-tag">←</span> <span class="kbd-tag">→</span> Seek</span>
+      <span><span class="kbd-tag">↑</span> <span class="kbd-tag">↓</span> Volume</span>
+    </footer>
+
+  </main>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- Modal 1: Required Specs Modal -->
+  <div id="modal-specs" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-specs-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-specs-title" class="modal-title">
+          <span>📜</span> System Specifications &amp; Live Status
+        </h3>
+        <button type="button" id="btn-close-specs" class="btn-modal-close" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- F1 -->
+        <div class="spec-item-box">
+          <div class="spec-item-header">
+            <span class="spec-item-title">Playlist Switcher &amp; Canvas Visualizer</span>
+            <span class="spec-badge-f">F1 ACTIVE</span>
+          </div>
+          <p class="spec-item-desc">
+            Clicking any unlocked track row highlights it in Spotify green (<code>#1DB954</code>), updates Now Playing artwork, title, artist, duration, resets playback to <code>0:00</code>, and animates the live Dynamic Canvas Audio Visualizer.
+          </p>
+          <div id="status-f1" class="spec-live-status">Checking live state...</div>
+        </div>
+
+        <!-- F2 -->
+        <div class="spec-item-box">
+          <div class="spec-item-header">
+            <span class="spec-item-title">Like Counter (♥ Toggle)</span>
+            <span class="spec-badge-f">F2 ACTIVE</span>
+          </div>
+          <p class="spec-item-desc">
+            Clicking the Heart button on any unlocked song toggles its active green state and immediately updates the "Liked Songs: X" badge at the top of the player.
+          </p>
+          <div id="status-f2" class="spec-live-status">Checking live state...</div>
+        </div>
+
+        <!-- F3 -->
+        <div class="spec-item-box">
+          <div class="spec-item-header">
+            <span class="spec-item-title">VIP Song Lock Gate &amp; Fallback</span>
+            <span class="spec-badge-f">F3 ACTIVE</span>
+          </div>
+          <p class="spec-item-desc">
+            The final track in the playlist (VIP Song) starts locked. Clicking it when Liked Songs &lt; 2 shakes the row and triggers a warning toast. When Liked Songs ≥ 2, it unlocks, switches 🔒 to ♥, and becomes playable. If unliked below 2 while playing, it pauses and falls back to Track 1.
+          </p>
+          <div id="status-f3" class="spec-live-status">Checking live state...</div>
+        </div>
+
+        <!-- Smart Mute -->
+        <div class="spec-item-box">
+          <div class="spec-item-header">
+            <span class="spec-item-title">Smart Mute Memory &amp; Canvas Audio Level</span>
+            <span class="spec-badge-f">SMART MUTE</span>
+          </div>
+          <p class="spec-item-desc">
+            Dragging volume to 0% (or clicking Speaker) mutes to red 🔇 and flattens the Canvas Visualizer. Clicking un-mute restores the exact previous non-zero volume (e.g. 70%), not 100%, and restores visualizer wave amplitude proportionally.
+          </p>
+          <div id="status-mute" class="spec-live-status">Checking live state...</div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btn-dismiss-specs" class="btn-modal-action">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Customize Songs Modal -->
+  <div id="modal-customize" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-customize-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-customize-title" class="modal-title">
+          <span>✏️</span> Customize Playlist Tracks
+        </h3>
+        <button type="button" id="btn-close-customize" class="btn-modal-close" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">
+          Modify track titles, artists, genres, or durations. Changes update in real-time.
+        </p>
+        <div id="edit-songs-form-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-customize" class="btn-modal-secondary">Cancel</button>
+        <button type="button" id="btn-save-customize" class="btn-modal-action">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="player.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

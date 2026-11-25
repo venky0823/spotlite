@@ -1,0 +1,55 @@
+:root {
+  /* Spotify Brand & Accent Colors */
+  --spotify-green: #1DB954;
+  --spotify-green-hover: #1ed760;
+  --spotify-green-glow: rgba(29, 185, 84, 0.4);
+  --spotify-green-tint: rgba(29, 185, 84, 0.12);
+  --spotify-green-border: rgba(29, 185, 84, 0.35);
+
+  --mute-red: #E91429;
+  --mute-red-glow: rgba(233, 20, 41, 0.4);
+  --mute-red-tint: rgba(233, 20, 41, 0.12);
+
+  --vip-gold: #FFD700;
+  --vip-gold-glow: rgba(255, 215, 0, 0.35);
+  --vip-gold-tint: rgba(255, 215, 0, 0.1);
+
+  /* Neutrals & Surfaces */
+  --bg-app: #0A0A0A;
+  --bg-card: #121212;
+  --bg-card-elevated: #181818;
+  --bg-card-subtle: #141414;
+  --bg-recessed: #080808;
+  --border-card: #242424;
+  --border-subtle: #1E1E1E;
+  --border-highlight: #333333;
+
+  /* Typography */
+  --text-main: #FFFFFF;
+  --text-secondary: #B3B3B3;
+  --text-muted: #6A6A6A;
+  --text-dark: #000000;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Sizing & Radius */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 16px 40px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-hero-play: 0 4px 20px rgba(29, 185, 84, 0.4);
+  --shadow-active-track: 0 0 12px rgba(29, 185, 84, 0.25);
+  --shadow-toast: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s ease;
+}

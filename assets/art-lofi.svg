@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <rect width="300" height="300" fill="#121212"/>
+  <rect x="50" y="50" width="200" height="200" rx="8" fill="#181818" stroke="#282828" stroke-width="2"/>
+  <path d="M100 180 C 100 150, 130 130, 150 90 C 170 130, 200 150, 200 180 A 50 50 0 0 1 100 180 Z" fill="#1DB954" opacity="0.85"/>
+  <circle cx="150" cy="180" r="18" fill="#121212"/>
+  <text x="150" y="270" text-anchor="middle" fill="#FFFFFF" font-family="'Inter', Arial" font-size="14" font-weight="700">LO-FI RAINDROPS</text>
+  <text x="150" y="286" text-anchor="middle" fill="#B3B3B3" font-family="'Inter', Arial" font-size="10">CHILLHOP LAB</text>
+</svg>
